@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-//hola 5
+//hola 6
 @Entity
 @Table(name = "curso")
 @Data
