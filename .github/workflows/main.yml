@@ -44,13 +44,15 @@ jobs:
           aws-region: us-east-1  # Cambia a tu región si es necesario
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
 
-      # Paso 5.5: Agregar llave SSH
+      # Paso 5.5: Agregar llave SSH de Amazon Linux de forma segura
       - name: Add SSH Key
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/id_rsa
+          cat << 'EOF' > ~/.ssh/id_rsa
+          ${{ secrets.EC2_SSH_KEY }}
+          EOF
           chmod 600 ~/.ssh/id_rsa
-
+          
       # Paso 6: Conectarse a EC2 y desplegar el contenedor
       - name: SSH commands to deploy
         run: |
